@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>STOP WATCH</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                color: white;
+            }
+            .Mother{
+                background-color: black;
+                width: 100%;
+                height: 100vh;
+                position: relative;
+            }
+            .Block{
+                display: flex;
+                padding: 20px;
+                margin-top: 20%;
+                position: absolute;
+                margin-left: 220px;
+            }
+            .Block h1{
+                margin-right: 20px;
+
+            }
+            button{
+                background-color: white;
+                color: black;
+                font-size: 21px;
+                padding: 12px;
+                border: none;
+                margin-top: 30%;
+            }
+            button:first-of-type{
+                margin-left: 40%;
+            }
+            span{
+                color: green;
+                font-size: 40px;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="Mother">
+        <div class="Block">
+
+            <h1>  Hours: <span  id="Hours">00</span></h1>
+            
+            <h1>  Minutes: <span  id="Minutes">00</span></h1>
+            <h1>  Seconds: <span id="Seconds">00</span></h1>
+            <h1>  MicroSeconds: <span id="MSeconds">00</span></h1>
+        </div>
+            <button id="start">Start</button>
+            <button id="Stop">Stop</button>
+            <button id="reset">Reset</button>
+       </div>
+        
+        <script>
+            let start=document.getElementById("start");
+            let stop=document.getElementById("Stop");
+            let reset=document.getElementById("reset");
+            let Hours=document.getElementById("Hours");
+            let Minutes=document.getElementById("Minutes");
+            let MicroSeconds=document.getElementById("MSeconds");
+            let Seconds=document.getElementById("Seconds");
+            let countMinutes=0;
+            count=0;
+            let theInterval;
+            let countingSeconds=0;
+            let countingHours=0;
+
+            start.addEventListener("click",()=>{
+              theInterval= setInterval(time,10);
+            });
+            stop.addEventListener("click",()=>{
+                clearInterval(theInterval);
+            });
+            reset.addEventListener("click",()=>{
+                Seconds.innerHTML=00;
+                MicroSeconds.innerHTML=00;
+                Minutes.innerHTML=00;
+               Hours.innerHTML=00; 
+               
+
+            });
+            
+            function time(){
+                count++;
+                if(count>0&&count<99){
+
+                    MicroSeconds.innerHTML=count;
+
+                }
+                if(count>99){
+                    countingSeconds++;
+
+                    count=0;
+                    MicroSeconds.innerHTML=00;
+                    Seconds.innerHTML=countingSeconds;
+
+                }
+                if(countingSeconds>59){
+                    countingSeconds=0;
+                    Seconds.innerHTML=00;
+
+                    countMinutes++
+                    Minutes.innerHTML=countMinutes;
+
+                }
+                if(countMinutes>59){
+                    countMinutes=0;
+                    countingHours++;
+                    Minutes.innerHTML=countMinutes;
+                    Hours.innerHTML=countingHours;
+
+         
+            }
+        }
+        </script>
+    </body>
+</html>
